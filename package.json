@@ -1,0 +1,36 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Karan Khanna personal webpage",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karan-khanna/portfolio.git"
+  },
+  "keywords": [
+    "portfolio"
+  ],
+  "author": "Karan Khanna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karan-khanna/portfolio/issues"
+  },
+  "homepage": "https://github.com/karan-khanna/portfolio#readme",
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
