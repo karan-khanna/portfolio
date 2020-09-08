@@ -1,4 +1,5 @@
 var path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -16,9 +17,13 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    publicPath: '/dist',
-    filename: 'bundle.js'
+    publicPath: '/',
+    filename: '[name].[contenthash].js'
   },
+  plugins: [new HtmlWebpackPlugin({
+    title: 'My Portfolio',
+    template:  path.join(__dirname, 'src/static/index.html'),
+  })],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
