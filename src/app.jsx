@@ -1,4 +1,8 @@
 import React from "react";
-const App = ()=> <div>Hello World!! - By Karan Khanna</div>;
+import styled from 'styled-components'
+import Timeline from "./components/Timeline";
+import './app.css';
+
+const App = ()=> <Timeline/>;
 
 export default App;

@@ -1,0 +1,16 @@
+/* This is the main CSS file */
+
+body {
+  background: var(--bg-color);
+}
+
+[theme='dark'] {
+  --bg-color: #000;
+  --font-color : #fff;
+}
+
+[theme='light'] {
+  --bg-color: #fff;
+  --font-color : #000;
+
+}
