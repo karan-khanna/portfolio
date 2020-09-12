@@ -26,61 +26,59 @@ const CarouselWrapper = styled.div`
   `;
 const initialVal = 200;
 const CarouselItem = styled.div`
-  height: ${({ isFocused, ratio }) => (isFocused ? `${125 + (ratio * initialVal)}px` : '125px')};
-  width: ${({ isFocused, ratio }) => (isFocused ? `${125 + (ratio * initialVal)}px` : '125px')};
-  background-color: #c4c4c4;
-  border-radius: 50%;
-  margin: 0 150px;
-  font-size: 40px;
-  color: black;
-  text-align: center;
-  transition: .5s;
-  position: relative;
+    width: 520px;
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
   &:first-of-type {
-    margin-left: 0;
+   visibility: hidden;
   }
 
   &:last-of-type {
-    margin-right: 0;
+   visibility: hidden;
   }
 
 `;
 
+const ItemWrapper = styled.div`
+text-align: center;
+  position: relative;
+  height: 150px;
+  width: 150px;
+  background-color: #c4c4c4;
+  border-radius: 50%;
+  font-size: 20px;
+  color: black;
+  transition: .8s;
+  position: relative;
+  transform: ${({ isFocused }) => (isFocused ? 'scale(3)' : 'initial')};
+`;
+
 const ItemTarget = styled.div`
-  height: 50px;
-  width: 50px;
+  height: 10px;
+  width: 10px;
   position: absolute;
-  top: calc(50% - 25px);
-  left: calc(50% - 25px);
+  top: calc(50% - 5px);
+  left: calc(50% - 5px);
+  background-color: red;
 
 `;
 
 const Timeline = () => {
   const [activeId, setActiveId] = useState(2);
-  const [ratio, setRatio] = useState(1);
 
   const callback = useCallback((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const { id } = entry.target;
-        const iRatio = entry.intersectionRatio;
         const active = id.split('listItem')[1];
-        console.log(`INTERSECT ${id}->${iRatio}`);
+        console.log(`INTERSECT ${id}->${entry.intersectionRatio}`);
 
         setActiveId(+active);
-        if (iRatio >= 0 && iRatio < 0.1) {
-          setRatio(0);
-        } else if (iRatio >= 0.1 && iRatio < 0.3) {
-          setRatio(0.2);
-        } else if (iRatio >= 0.3 && iRatio < 0.5) {
-          setRatio(0.4);
-        } else if (iRatio >= 0.5 && iRatio < 0.7) {
-          setRatio(0.6);
-        } else if (iRatio >= 0.7 && iRatio <= 1) {
-          setRatio(1);
-        }
       } else {
         const { id } = entry.target;
+        const active = id.split('listItem')[1];
+        /*         setActiveId(-1); USE when all small at a time. */
         console.log(`NON ${id}->${entry.intersectionRatio}`);
       }
       // Each entry describes an intersection change for one observed
@@ -99,7 +97,7 @@ const Timeline = () => {
     const options = {
       root: document.querySelector('#scrollArea'),
       rootMargin: '0px -400px',
-      threshold: [0.2, 0.4, 0.6, 0.8, 1],
+      threshold: [0],
     };
     observerRef.current = new IntersectionObserver(callback, options);
     ['1', '2', '3', '4', '5', '6', '7', '8'].forEach((id) => observerRef.current.observe(document.querySelector(`#listItem${id}`)));
@@ -114,37 +112,55 @@ const Timeline = () => {
       <Heading>Heading</Heading>
       <CarouselSection id="scrollArea">
         <CarouselWrapper>
-          <CarouselItem ratio={ratio} isFocused={activeId == 1}>
-            {/* {`1-${activeId == 1}`} */}
-            <ItemTarget id="listItem1" />
+          <CarouselItem>
+            <ItemWrapper isFocused={activeId == 1}>
+              <ItemTarget id="listItem1" />
+            </ItemWrapper>
+
+            {`1-${activeId == 1}`}
           </CarouselItem>
-          <CarouselItem ratio={ratio} isFocused={activeId == 2} id="listItem2">
-            {/* {`2-${activeId == 2}`} */}
-            <ItemTarget id="listItem2" />
+          <CarouselItem>
+            <ItemWrapper isFocused={activeId == 2}>
+              {`2-${activeId == 2}`}
+              <ItemTarget id="listItem2" />
+            </ItemWrapper>
+
           </CarouselItem>
-          <CarouselItem ratio={ratio} isFocused={activeId == 3} id="listItem3">
-            {/* {`3-${activeId == 3}`} */}
-            <ItemTarget id="listItem3" />
+          <CarouselItem>
+            <ItemWrapper isFocused={activeId == 3}>
+              {`3-${activeId == 3}`}
+              <ItemTarget id="listItem3" />
+            </ItemWrapper>
           </CarouselItem>
-          <CarouselItem ratio={ratio} isFocused={activeId == 4} id="listItem4">
-            {/* {`4-${activeId == 4}`} */}
-            <ItemTarget id="listItem4" />
+          <CarouselItem>
+            <ItemWrapper isFocused={activeId == 4}>
+              {`4-${activeId == 4}`}
+              <ItemTarget id="listItem4" />
+            </ItemWrapper>
           </CarouselItem>
-          <CarouselItem ratio={ratio} isFocused={activeId == 5} id="listItem5">
-            {/* {`5-${activeId == 5}`} */}
-            <ItemTarget id="listItem5" />
+          <CarouselItem>
+            <ItemWrapper isFocused={activeId == 5}>
+              {`5-${activeId == 5}`}
+              <ItemTarget id="listItem5" />
+            </ItemWrapper>
           </CarouselItem>
-          <CarouselItem ratio={ratio} isFocused={activeId == 6} id="listItem6">
-            {/* {`6-${activeId == 6}`} */}
-            <ItemTarget id="listItem6" />
+          <CarouselItem>
+            <ItemWrapper isFocused={activeId == 6}>
+              {`6-${activeId == 6}`}
+              <ItemTarget id="listItem6" />
+            </ItemWrapper>
           </CarouselItem>
-          <CarouselItem ratio={ratio} isFocused={activeId == 7} id="listItem7">
-            {/* {`7-${activeId == 7}`} */}
-            <ItemTarget id="listItem7" />
+          <CarouselItem>
+            <ItemWrapper isFocused={activeId == 7}>
+              {`7-${activeId == 7}`}
+              <ItemTarget id="listItem7" />
+            </ItemWrapper>
           </CarouselItem>
-          <CarouselItem ratio={ratio} isFocused={activeId == 8} id="listItem8">
-            {/* {`8-${activeId == 8}`} */}
-            <ItemTarget id="listItem8" />
+          <CarouselItem>
+            <ItemWrapper isFocused={activeId == 8}>
+              {`8-${activeId == 8}`}
+              <ItemTarget id="listItem8" />
+            </ItemWrapper>
           </CarouselItem>
         </CarouselWrapper>
       </CarouselSection>
