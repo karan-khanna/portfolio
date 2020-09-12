@@ -2,6 +2,12 @@
 
 body {
   background: var(--bg-color);
+  margin: 0;
+  height: 100vh;
+}
+
+#app {
+ height: 100%; 
 }
 
 [theme='dark'] {
