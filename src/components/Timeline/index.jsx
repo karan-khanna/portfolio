@@ -50,7 +50,7 @@ text-align: center;
   border-radius: 50%;
   font-size: 20px;
   color: black;
-  transition: .6s;
+  transition: ${({ isFocused }) => (isFocused ? '.6s' : '.2s')}; 
   position: relative;
   transform: ${({ isFocused }) => (isFocused ? 'scale(3)' : 'initial')};
 `;
