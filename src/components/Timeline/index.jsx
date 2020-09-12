@@ -49,7 +49,7 @@ text-align: center;
   border-radius: 50%;
   font-size: 20px;
   color: black;
-  transition: .8s;
+  transition: .6s;
   position: relative;
   transform: ${({ isFocused }) => (isFocused ? 'scale(3)' : 'initial')};
 `;
@@ -78,7 +78,7 @@ const Timeline = () => {
       } else {
         const { id } = entry.target;
         const active = id.split('listItem')[1];
-        /*         setActiveId(-1); USE when all small at a time. */
+        setActiveId(-1);
         console.log(`NON ${id}->${entry.intersectionRatio}`);
       }
       // Each entry describes an intersection change for one observed
@@ -96,7 +96,7 @@ const Timeline = () => {
   useEffect(() => {
     const options = {
       root: document.querySelector('#scrollArea'),
-      rootMargin: '0px -400px',
+      rootMargin: '0px -500px',
       threshold: [0],
     };
     observerRef.current = new IntersectionObserver(callback, options);
