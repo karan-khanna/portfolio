@@ -14,24 +14,19 @@ const Heading = styled.h1`
 `;
 
 const CarouselSection = styled.div`
-  margin-top: 100px; 
+  padding: 200px 0;
   overflow-x: scroll;
   scroll-behavior: smooth;
+  white-space: nowrap;
+  scroll-snap-type: x mandatory;
 `;
 
-const CarouselWrapper = styled.div`
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 600px;
-  `;
-const initialVal = 200;
 const CarouselItem = styled.div`
-    width: 520px;
-    /* text-align: center; */
-    display: flex;
-    justify-content: center;
-  &:first-of-type {
+    display: inline-block;
+    width: 33.4%;
+    scroll-snap-align: center;
+
+    &:first-of-type {
    visibility: hidden;
   }
 
@@ -42,6 +37,7 @@ const CarouselItem = styled.div`
 `;
 
 const ItemWrapper = styled.div`
+margin: auto;
 text-align: center;
   position: relative;
   height: 150px;
@@ -125,58 +121,56 @@ const Timeline = () => {
     <Layout>
       <Heading>Heading</Heading>
       <CarouselSection id="scrollArea">
-        <CarouselWrapper>
-          <CarouselItem>
-            <ItemWrapper isFocused={activeId === 1}>
-              <ItemTarget id="listItem1" isFocused={activeId === 1} />
-            </ItemWrapper>
+        <CarouselItem>
+          <ItemWrapper isFocused={activeId === 1}>
+            <ItemTarget id="listItem1" isFocused={activeId === 1} />
+          </ItemWrapper>
 
-            {`1-${activeId === 1}`}
-          </CarouselItem>
-          <CarouselItem>
-            <ItemWrapper isFocused={activeId === 2}>
-              {`2-${activeId === 2}`}
-              <ItemTarget id="listItem2" isFocused={activeId === 2} />
-            </ItemWrapper>
+          {`1-${activeId === 1}`}
+        </CarouselItem>
+        <CarouselItem>
+          <ItemWrapper isFocused={activeId === 2}>
+            {`2-${activeId === 2}`}
+            <ItemTarget id="listItem2" isFocused={activeId === 2} />
+          </ItemWrapper>
 
-          </CarouselItem>
-          <CarouselItem>
-            <ItemWrapper isFocused={activeId === 3}>
-              {`3-${activeId === 3}`}
-              <ItemTarget id="listItem3" isFocused={activeId === 3} />
-            </ItemWrapper>
-          </CarouselItem>
-          <CarouselItem>
-            <ItemWrapper isFocused={activeId === 4}>
-              {`4-${activeId === 4}`}
-              <ItemTarget id="listItem4" isFocused={activeId === 4} />
-            </ItemWrapper>
-          </CarouselItem>
-          <CarouselItem>
-            <ItemWrapper isFocused={activeId === 5}>
-              {`5-${activeId === 5}`}
-              <ItemTarget id="listItem5" isFocused={activeId === 5} />
-            </ItemWrapper>
-          </CarouselItem>
-          <CarouselItem>
-            <ItemWrapper isFocused={activeId === 6}>
-              {`6-${activeId === 6}`}
-              <ItemTarget id="listItem6" isFocused={activeId === 6} />
-            </ItemWrapper>
-          </CarouselItem>
-          <CarouselItem>
-            <ItemWrapper isFocused={activeId === 7}>
-              {`7-${activeId === 7}`}
-              <ItemTarget id="listItem7" isFocused={activeId === 7} />
-            </ItemWrapper>
-          </CarouselItem>
-          <CarouselItem>
-            <ItemWrapper isFocused={activeId === 8}>
-              {`8-${activeId === 8}`}
-              <ItemTarget id="listItem8" isFocused={activeId === 8} />
-            </ItemWrapper>
-          </CarouselItem>
-        </CarouselWrapper>
+        </CarouselItem>
+        <CarouselItem>
+          <ItemWrapper isFocused={activeId === 3}>
+            {`3-${activeId === 3}`}
+            <ItemTarget id="listItem3" isFocused={activeId === 3} />
+          </ItemWrapper>
+        </CarouselItem>
+        <CarouselItem>
+          <ItemWrapper isFocused={activeId === 4}>
+            {`4-${activeId === 4}`}
+            <ItemTarget id="listItem4" isFocused={activeId === 4} />
+          </ItemWrapper>
+        </CarouselItem>
+        <CarouselItem>
+          <ItemWrapper isFocused={activeId === 5}>
+            {`5-${activeId === 5}`}
+            <ItemTarget id="listItem5" isFocused={activeId === 5} />
+          </ItemWrapper>
+        </CarouselItem>
+        <CarouselItem>
+          <ItemWrapper isFocused={activeId === 6}>
+            {`6-${activeId === 6}`}
+            <ItemTarget id="listItem6" isFocused={activeId === 6} />
+          </ItemWrapper>
+        </CarouselItem>
+        <CarouselItem>
+          <ItemWrapper isFocused={activeId === 7}>
+            {`7-${activeId === 7}`}
+            <ItemTarget id="listItem7" isFocused={activeId === 7} />
+          </ItemWrapper>
+        </CarouselItem>
+        <CarouselItem>
+          <ItemWrapper isFocused={activeId === 8}>
+            {`8-${activeId === 8}`}
+            <ItemTarget id="listItem8" isFocused={activeId === 8} />
+          </ItemWrapper>
+        </CarouselItem>
       </CarouselSection>
       <PrevBtn onClick={() => { document.getElementById('scrollArea').scrollLeft = document.getElementById('scrollArea').scrollLeft - 515; }}>{'<< Previous'}</PrevBtn>
       <NextBtn onClick={() => { document.getElementById('scrollArea').scrollLeft = document.getElementById('scrollArea').scrollLeft + 515; }}>{'Next >>'}</NextBtn>
