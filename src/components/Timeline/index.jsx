@@ -95,9 +95,9 @@ const ActiveItemData = styled.div`
   font-size: 20px;
   overflow: hidden;
   margin: 0 auto;
-  transition-delay: 1s;
-  transition: 1s;
-  opacity:  ${({ isFocused }) => (isFocused ? '1' : '0')};
+  transition-delay: ${({ isFocused }) => (isFocused ? '1s' : '.1s')};
+  transition: ${({ isFocused }) => (isFocused ? '2s' : '.5s')};
+  opacity: ${({ isFocused }) => (isFocused ? '1' : '0')};
   position: absolute;
     top: 0%;
     left: 26%;
