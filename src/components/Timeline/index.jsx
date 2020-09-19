@@ -1,7 +1,7 @@
 import React, {
   useCallback, useEffect, useRef, useState,
 } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import CarouselItem from './CarouselItem';
 import CarouselItemList from './config';
 
@@ -59,7 +59,7 @@ position: absolute;
 `;
 
 const TimelineCurve = styled.svg`
-  margin-top: -100px;
+  margin-top: -150px;
 `;
 
 const Wallpaper = styled.img`
@@ -73,7 +73,34 @@ const Wallpaper = styled.img`
   width:100%;
   transition: .05s;
   filter: blur(3px);
+`;
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const DataWrapper = styled.div`
+  position: relative;
+`;
+
+const ActiveItemData = styled.div`
+  color: white;
+  max-width: 500px;
+  text-align: center;
+  font-size: 20px;
+  overflow: hidden;
+  margin: 0 auto;
+  transition-delay: 1s;
+  transition: 1s;
+  opacity:  ${({ isFocused }) => (isFocused ? '1' : '0')};
+  position: absolute;
+    top: 0%;
+    left: 26%;
 `;
 
 const Timeline = () => {
@@ -167,6 +194,16 @@ const Timeline = () => {
         />
       </TimelineCurve>
 
+      <DataWrapper>
+        {CarouselItemList.map(({ text }, index) => (
+          <ActiveItemData
+            isFocused={index === activeId}
+          >
+            {text}
+          </ActiveItemData>
+        ))}
+      </DataWrapper>
+
       <PrevBtn
         onClick={() => {
           document.getElementById('scrollArea').scrollLeft = document.getElementById('scrollArea').scrollLeft - 450;
@@ -183,6 +220,7 @@ const Timeline = () => {
         <i className="fas fa-chevron-right" />
 
       </NextBtn>
+
     </Layout>
   );
 };

@@ -54,7 +54,19 @@ const ItemImage = styled.img`
   height: 100%;
 `;
 
-const CarouselItem = ({ activeId, itemId, itemConfig: { img } }) => {
+const ItemTitle = styled.div`
+  width: 100%;
+  background: black;
+  opacity: .88;
+  color: white;
+  position: absolute;
+  left: 0;
+  top:  ${({ isFocused }) => (isFocused ? '80%' : '100%')};
+  transition: ${({ isFocused }) => (isFocused ? '.6s' : '.4s')};
+  transition-delay: ${({ isFocused }) => (isFocused ? '.4s' : '0s')};
+`;
+
+const CarouselItem = ({ activeId, itemId, itemConfig: { img, title } }) => {
   const isFocused = activeId === itemId;
 
   return (
@@ -62,6 +74,7 @@ const CarouselItem = ({ activeId, itemId, itemConfig: { img } }) => {
       <ItemWrapper isFocused={isFocused}>
         <ItemImage src={img} />
         <ItemTarget id={`item-${itemId}`} isFocused={isFocused} />
+        <ItemTitle isFocused={isFocused}>{title}</ItemTitle>
       </ItemWrapper>
     </CarouselItemContainer>
   );
